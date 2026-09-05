@@ -380,6 +380,9 @@
   .wa-float svg { width:22px; height:22px; }
   .call-float { bottom:80px; background:var(--deep); }
   .call-float svg { width:18px; height:18px; fill:var(--paper); }
+  
+  .music-float { bottom:22px; left:24px; right:auto; background:rgba(251,248,243,0.92); border:1px solid var(--line); border-radius:50%; padding:0; display:flex; align-items:center; justify-content:center; border:1px solid rgba(28,32,29,0.12); cursor:pointer; }
+  .music-float svg { width:20px; height:20px; fill:var(--ink); }
 
   ::selection{ background:var(--gold-soft); }
   .reveal {
@@ -731,6 +734,13 @@
   <svg viewBox="0 0 32 32" fill="white"><path d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.6.8 5 2.2 7L3 29l6.7-2.4c1.9 1.1 4.1 1.7 6.3 1.7 7 0 12.7-5.6 12.7-12.5S23 3 16 3zm0 22.7c-2 0-3.9-.5-5.5-1.5l-.4-.2-4 1.4 1.3-3.9-.3-.4a10.1 10.1 0 01-1.6-5.6C5.5 9.9 10.2 5.3 16 5.3S26.5 9.9 26.5 15.5 21.8 25.7 16 25.7zm5.8-7.6c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1s-.8 1-1 1.3-.4.3-.7.1a8.7 8.7 0 01-2.6-1.6 9.7 9.7 0 01-1.8-2.2c-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6s-.7-1.7-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.4c.2.3 2.4 3.7 5.8 5.1.8.3 1.5.5 2 .7.8.3 1.6.2 2.2.1.7-.1 2-.8 2.3-1.6.3-.8.3-1.4.2-1.6-.1-.1-.3-.2-.6-.4z"/></svg>
 </a>
 
+<audio id="bg-audio" loop>
+  <source src="images/flute.mp3" type="audio/mpeg">
+</audio>
+<button class="float-btn music-float" id="music-btn" aria-label="Toggle Music" title="Play Relaxing Music">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path id="music-icon" d="M8 5v14l11-7z"/></svg>
+</button>
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     // --- Image Slider ---
@@ -884,6 +894,25 @@
         header.classList.remove('scrolled');
       }
     });
+
+    // --- Background Music ---
+    const musicBtn = document.getElementById('music-btn');
+    const bgAudio = document.getElementById('bg-audio');
+    const musicIcon = document.getElementById('music-icon');
+    let isPlaying = false;
+    
+    if(musicBtn && bgAudio) {
+      musicBtn.addEventListener('click', () => {
+        if(isPlaying) {
+          bgAudio.pause();
+          musicIcon.setAttribute('d', 'M8 5v14l11-7z'); // Play icon
+        } else {
+          bgAudio.play();
+          musicIcon.setAttribute('d', 'M6 19h4V5H6v14zm8-14v14h4V5h-4z'); // Pause icon
+        }
+        isPlaying = !isPlaying;
+      });
+    }
   });
 </script>
 
