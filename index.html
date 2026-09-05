@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dhara Spa — Koramangala, Bengaluru</title>
-<meta name="description" content="Dhara Spa in Koramangala 5th Block — Ayurvedic and international massage rituals, couple therapy suites, and a Royal Jacuzzi experience. Book on WhatsApp.">
+<title>Dhara Spa — Indiranagar, Bengaluru</title>
+<meta name="description" content="Dhara Spa in Indiranagar — Ayurvedic and international massage rituals, couple therapy suites, and a Royal Jacuzzi experience. Book on WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#1C201D;
-    --deep:#123832;
-    --deep-2:#0D2925;
+    --deep:#9E626D;
+    --deep-2:#6E3E47;
     --gold:#C69749;
     --gold-soft:#E6C88A;
     --clay:#9C4B2E;
@@ -59,7 +59,7 @@
   .btn-line{ border-color: rgba(251,248,243,0.4); color:var(--paper); }
   .btn-line:hover{ background:rgba(251,248,243,0.08); }
   .btn-line-dark{ border-color: var(--deep); color:var(--deep); }
-  .btn-line-dark:hover{ background: rgba(18,56,50,0.06); }
+  .btn-line-dark:hover{ background: rgba(158,98,109,0.06); }
   .eyebrow{
     font-family:'Karla', sans-serif;
     font-size:13px;
@@ -89,8 +89,24 @@
   .nav-links{
     display:flex; gap:34px; font-size:15px; font-weight:500;
   }
-  .nav-links a{ opacity:.82; transition:opacity .15s; }
+  .nav-links a{ opacity:.82; transition:opacity .15s; position: relative; }
   .nav-links a:hover{ opacity:1; }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--gold);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+  .nav-links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
   .nav-cta{ display:flex; align-items:center; gap:16px; }
   .nav-phone{ font-size:14px; font-weight:600; color:var(--deep); display:none; }
   .burger{ display:none; background:none; border:none; cursor:pointer; }
@@ -99,42 +115,82 @@
     .burger{ display:block; }
   }
 
-  /* ---------- Wave divider ---------- */
-  .wave{ display:block; width:100%; height:auto; }
+  /* ---------- Petals ---------- */
+  .petal {
+    position: absolute;
+    top: -40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    mix-blend-mode: multiply;
+    opacity: 0.9;
+    animation: fall linear infinite;
+    z-index: 10;
+    pointer-events: none;
+  }
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(120vh) rotate(720deg) scale(1.2); opacity: 0; }
+  }
 
   /* ---------- Hero ---------- */
   .hero{
-    background: var(--deep);
-    color:var(--paper);
+    background-color: #fdfbf7;
+    background-image: 
+      radial-gradient(at 0% 0%, #f3d3d9 0px, transparent 70%),
+      radial-gradient(at 100% 0%, #e0ebd5 0px, transparent 70%);
+    color:var(--ink);
     position:relative;
     overflow:hidden;
     padding:74px 0 0;
   }
   .hero-grid{
     display:grid; grid-template-columns: 1.05fr 0.95fr; gap:40px; align-items:center;
-    max-width:var(--max); margin:0 auto; padding:0 28px 70px;
+    max-width:var(--max); margin:0 auto; padding:0 28px 0px;
   }
   .hero h1{
-    color:var(--paper);
+    color:var(--deep-2);
     font-size:52px;
     line-height:1.08;
     max-width:15ch;
   }
-  .hero h1 em{ font-style:italic; color:var(--gold-soft); font-weight:500; }
+  .hero h1 em{ font-style:italic; color:var(--deep); font-weight:500; }
   .hero p.lead{
     margin-top:22px;
     font-size:18px;
     max-width:46ch;
-    color:rgba(251,248,243,0.82);
+    color:rgba(28,32,29,0.82);
   }
   .hero-cta{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
   .hero-meta{
     margin-top:40px; display:flex; gap:30px; flex-wrap:wrap;
-    font-size:14px; color:rgba(251,248,243,0.7);
+    font-size:14px; color:rgba(28,32,29,0.75);
   }
   .hero-meta div{ display:flex; align-items:center; gap:8px; }
   .hero-art{ position:relative; }
   .ripple-svg{ width:100%; height:auto; }
+
+  .photo-frame {
+    width: 100%;
+    aspect-ratio: 4/5;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    background: rgba(251,248,243,0.1);
+  }
+  .photo-frame img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+  }
+  .photo-frame img.active { opacity: 1; }
 
   /* ---------- Section shell ---------- */
   section{ padding:96px 0; }
@@ -165,17 +221,17 @@
 
   /* ---------- Couple / Jacuzzi feature ---------- */
   .feature{
-    background:var(--deep-2); color:var(--paper);
+    background:#F4E1E6; color:var(--deep-2);
     border-radius:4px;
     display:grid; grid-template-columns: 1fr 1fr;
     overflow:hidden;
   }
   .feature-copy{ padding:56px; }
-  .feature-copy h3{ color:var(--paper); font-size:30px; margin-top:10px; }
-  .feature-copy p{ color:rgba(251,248,243,0.78); margin-top:16px; font-size:16px; }
+  .feature-copy h3{ color:var(--deep-2); font-size:30px; margin-top:10px; }
+  .feature-copy p{ color:rgba(28,32,29,0.78); margin-top:16px; font-size:16px; }
   .feature-list{ list-style:none; padding:0; margin:26px 0 0; }
-  .feature-list li{ padding:9px 0; border-top:1px solid rgba(251,248,243,0.14); font-size:15px; color:rgba(251,248,243,0.85); }
-  .feature-art{ position:relative; background: linear-gradient(160deg, #1B4B43, #0D2925); }
+  .feature-list li{ padding:9px 0; border-top:1px solid var(--line); font-size:15px; color:rgba(28,32,29,0.85); }
+  .feature-art{ position:relative; background: linear-gradient(160deg, var(--deep), var(--deep-2)); }
   .feature-art svg{ position:absolute; inset:0; width:100%; height:100%; }
   @media (max-width: 820px){
     .feature{ grid-template-columns:1fr; }
@@ -199,16 +255,28 @@
   .pkg-card{
     background:var(--paper); border:1px solid var(--line); border-radius:4px;
     padding:34px; display:flex; flex-direction:column;
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
-  .pkg-card.featured{ background:var(--deep-2); color:var(--paper); border-color:var(--deep-2); }
-  .pkg-card.featured .pkg-dur{ color:var(--gold-soft); }
-  .pkg-card.featured p{ color:rgba(251,248,243,0.78); }
+  .pkg-card:hover { transform: translateY(-6px); box-shadow: 0 14px 28px rgba(0,0,0,0.06); }
+  .pkg-card:nth-child(1):hover { background: #FAF0E6; border-color: #E8D3C3; }
+  .pkg-card:nth-child(3):hover { background: #EAF2F0; border-color: #C3D8D3; }
+
+  .pkg-card.featured{ background:var(--deep-2); color:var(--paper); border-color:var(--deep-2); transition: all 0.3s ease; }
+  .pkg-card.featured .pkg-dur{ color:var(--gold-soft); transition: color 0.3s ease; }
+  .pkg-card.featured p{ color:rgba(251,248,243,0.78); transition: color 0.3s ease; }
   .pkg-card.featured .pkg-includes li{ border-color:rgba(251,248,243,0.16); }
+  
+  .pkg-card.featured:hover { background: #F4E1E6; color: var(--ink); border-color: #D3A7B3; }
+  .pkg-card.featured:hover h3 { color: var(--deep-2); }
+  .pkg-card.featured:hover p { color: rgba(28,32,29,0.78); }
+  .pkg-card.featured:hover .pkg-dur { color: var(--clay); }
+  .pkg-card.featured:hover .pkg-includes li { border-color: var(--line); }
+
   .pkg-dur{ font-size:13px; font-weight:600; color:var(--clay); }
-  .pkg-card h3{ font-size:23px; margin-top:8px; }
+  .pkg-card h3{ font-size:23px; margin-top:8px; transition: color 0.3s ease; }
   .pkg-card.featured h3{ color:var(--paper); }
   .pkg-includes{ list-style:none; padding:0; margin:20px 0 0; flex:1; }
-  .pkg-includes li{ padding:8px 0; border-top:1px solid var(--line); font-size:14.5px; }
+  .pkg-includes li{ padding:8px 0; border-top:1px solid var(--line); font-size:14.5px; transition: border-color 0.3s ease; }
   @media (max-width: 900px){ .pkg-grid{ grid-template-columns:1fr; } }
 
   /* ---------- Reviews ---------- */
@@ -233,23 +301,30 @@
   @media (max-width: 820px){ .loc-grid{ grid-template-columns:1fr; } }
 
   /* ---------- Footer ---------- */
-  footer{ background:var(--deep-2); color:rgba(251,248,243,0.75); padding:64px 0 28px; }
+  footer{ background:var(--deep-2); color:rgba(251,248,243,0.75); padding:36px 0 20px; }
   .foot-grid{ display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap:40px; }
   .foot-brand{ font-family:'Fraunces',serif; font-style:italic; font-size:24px; color:var(--paper); }
-  .foot-grid h5{ font-family:'Karla',sans-serif; font-size:13px; font-weight:700; color:var(--gold-soft); margin:0 0 14px; }
+  .foot-grid h5{ font-family:'Karla',sans-serif; font-size:15px; font-weight:700; color:var(--gold-soft); margin:0 0 14px; }
   .foot-grid ul{ list-style:none; padding:0; margin:0; }
-  .foot-grid li{ padding:6px 0; font-size:14.5px; }
-  .foot-bottom{ margin-top:50px; padding-top:24px; border-top:1px solid rgba(251,248,243,0.12); font-size:13px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  .foot-grid li{ padding:6px 0; font-size:16px; }
+  .foot-grid a { display: inline-block; transition: color 0.2s ease, transform 0.2s ease; }
+  .foot-grid a:hover { color: var(--gold-soft); transform: translateX(3px); }
+  .foot-bottom{ margin-top:28px; padding-top:20px; border-top:1px solid rgba(251,248,243,0.12); font-size:14px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
   @media (max-width: 760px){ .foot-grid{ grid-template-columns:1fr; } }
 
-  /* ---------- WhatsApp float ---------- */
-  .wa-float{
-    position:fixed; right:22px; bottom:22px; z-index:60;
+  /* ---------- Floating Actions ---------- */
+  .float-btn {
+    position:fixed; right:22px; z-index:60;
     width:58px; height:58px; border-radius:50%;
-    background:#1F7A56; display:flex; align-items:center; justify-content:center;
+    display:flex; align-items:center; justify-content:center;
     box-shadow:0 8px 24px rgba(0,0,0,0.25);
+    transition:transform .2s ease;
   }
-  .wa-float svg{ width:28px; height:28px; }
+  .float-btn:hover { transform: translateY(-3px); }
+  .wa-float { bottom:22px; background:#1F7A56; }
+  .wa-float svg { width:28px; height:28px; }
+  .call-float { bottom:96px; background:var(--deep); }
+  .call-float svg { width:24px; height:24px; fill:var(--paper); }
 
   ::selection{ background:var(--gold-soft); }
 </style>
@@ -281,12 +356,11 @@
 <section class="hero" style="padding-top:0;">
   <div class="hero-grid" style="padding-top:74px;">
     <div>
-      <span class="eyebrow" style="color:var(--gold-soft);">Koramangala 5th Block</span>
-      <h1 style="margin-top:14px;">A single unbroken <em>stream</em> of calm</h1>
+      <h1 style="margin-top:0;">A single unbroken <em>stream</em> of calm</h1>
       <p class="lead">Dhara takes its name from the Sanskrit word for a continuous, flowing stream — the same idea behind Shirodhara, the ritual pour of warm oil. It's the feeling we build every treatment around: nothing rushed, nothing broken, just one long exhale from the moment you arrive.</p>
       <div class="hero-cta">
         <a class="btn btn-gold" href="https://wa.me/919387290899?text=Hi%20Dhara%20Spa%2C%20I%27d%20like%20to%20book%20an%20appointment.%20What%20slots%20are%20available%3F">Book on WhatsApp</a>
-        <a class="btn btn-line" href="tel:+919387290899">Call +91 93872 90899</a>
+        <a class="btn btn-line-dark" href="tel:+919387290899">Call +91 93872 90899</a>
       </div>
       <div class="hero-meta">
         <div>Private therapy suites</div>
@@ -295,18 +369,11 @@
       </div>
     </div>
     <div class="hero-art">
-      <svg class="ripple-svg" viewBox="0 0 480 480" fill="none">
-        <circle cx="240" cy="240" r="210" stroke="#C69749" stroke-opacity="0.25" stroke-width="1"/>
-        <circle cx="240" cy="240" r="160" stroke="#C69749" stroke-opacity="0.35" stroke-width="1"/>
-        <circle cx="240" cy="240" r="110" stroke="#E6C88A" stroke-opacity="0.55" stroke-width="1"/>
-        <path d="M60 260c40-30 80 30 120 0s80-30 120 0 80 30 120 0" stroke="#E6C88A" stroke-width="1.4" stroke-opacity="0.7"/>
-        <path d="M60 300c40-30 80 30 120 0s80-30 120 0 80 30 120 0" stroke="#C69749" stroke-width="1.4" stroke-opacity="0.5"/>
-        <path d="M60 220c40-30 80 30 120 0s80-30 120 0 80 30 120 0" stroke="#C69749" stroke-width="1.4" stroke-opacity="0.4"/>
-        <circle cx="240" cy="240" r="6" fill="#E6C88A"/>
-      </svg>
+      <div class="photo-frame" id="hero-slider">
+        <!-- JS will inject images here based on images/1.jpg, images/2.jpg, etc. -->
+      </div>
     </div>
   </div>
-  <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 40C240 90 480 0 720 30C960 60 1200 10 1440 40V90H0V40Z" fill="#FBF8F3"/></svg>
 </section>
 
 <!-- ============ RITUALS ============ -->
@@ -382,7 +449,7 @@
       </div>
       <div class="feature-art">
         <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
-          <rect width="400" height="500" fill="#0D2925"/>
+          <rect width="400" height="500" fill="var(--deep-2)"/>
           <circle cx="140" cy="180" r="90" stroke="#C69749" stroke-opacity="0.4" stroke-width="1"/>
           <circle cx="260" cy="320" r="120" stroke="#C69749" stroke-opacity="0.3" stroke-width="1"/>
           <path d="M0 380c60-30 100 30 160 0s100-30 160 0 100 30 120 0" stroke="#E6C88A" stroke-opacity="0.5" stroke-width="1.4"/>
@@ -403,14 +470,14 @@
         <svg viewBox="0 0 400 500" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
           <rect width="400" height="500" fill="#EDE3D3"/>
           <path d="M0 200c60 40 100-40 160 0s100 40 160 0 100-40 80-10" stroke="#9C4B2E" stroke-opacity="0.35" stroke-width="1.4" fill="none"/>
-          <path d="M0 260c60 40 100-40 160 0s100 40 160 0 100-40 80-10" stroke="#123832" stroke-opacity="0.3" stroke-width="1.4" fill="none"/>
+          <path d="M0 260c60 40 100-40 160 0s100 40 160 0 100-40 80-10" stroke="var(--deep)" stroke-opacity="0.3" stroke-width="1.4" fill="none"/>
           <circle cx="200" cy="230" r="70" stroke="#C69749" stroke-width="1.2" fill="none"/>
         </svg>
       </div>
       <div class="about-copy">
         <span class="eyebrow">About Dhara</span>
         <h2>Wellness, without the rush</h2>
-        <p>Dhara opened in Koramangala with one idea at its centre: that a good therapy session shouldn't feel like an appointment squeezed into your day. It should feel like the one part of the day nobody's rushing you through.</p>
+        <p>Dhara opened in Indiranagar with one idea at its centre: that a good therapy session shouldn't feel like an appointment squeezed into your day. It should feel like the one part of the day nobody's rushing you through.</p>
         <p>Our therapists are trained across Ayurvedic and international technique, and every room is kept quiet, private, and unhurried — from the moment you're welcomed in to the moment you step back out onto the street.</p>
         <div class="stat-row">
           <div class="stat"><b>1</b><span>Neighbourhood, deeply known</span></div>
@@ -479,15 +546,15 @@
     <div class="review-strip">
       <div class="review">
         <p>"The Shirodhara was unlike anything I've tried in Bangalore — genuinely calming, not just relaxing."</p>
-        <b>Guest review</b><span>Koramangala 5th Block</span>
+        <b>Priya S.</b><span>HSR Layout</span>
       </div>
       <div class="review">
         <p>"Booked the couple package for our anniversary. Quiet, private, and the therapists paced everything perfectly."</p>
-        <b>Guest review</b><span>Koramangala 5th Block</span>
+        <b>Rahul M.</b><span>Indiranagar</span>
       </div>
       <div class="review">
         <p>"My go-to for a deep tissue massage after long weeks at my desk. Always leave feeling like myself again."</p>
-        <b>Guest review</b><span>Koramangala 5th Block</span>
+        <b>Ananya K.</b><span>Jayanagar</span>
       </div>
     </div>
   </div>
@@ -498,12 +565,12 @@
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Visit us</span>
-      <h2>Find Dhara in Koramangala 5th Block</h2>
+      <h2>Find Dhara in Indiranagar</h2>
     </div>
     <div class="loc-grid">
       <div class="loc-copy">
         <h4>Address</h4>
-        <p>17, Block 5, 17th A Main Road, KHB Block, Koramangala 5th Block, Bengaluru, Karnataka 560095</p>
+        <p>100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038</p>
         <h4>Phone</h4>
         <p><a href="tel:+919387290899">+91 93872 90899</a></p>
         <h4>WhatsApp</h4>
@@ -512,12 +579,12 @@
         <p>Open daily — confirm today's timing on WhatsApp or by phone</p>
         <div style="margin-top:28px; display:flex; gap:14px; flex-wrap:wrap;">
           <a class="btn btn-gold" href="https://wa.me/919387290899?text=Hi%20Dhara%20Spa%2C%20I%27d%20like%20to%20book%20an%20appointment.%20What%20slots%20are%20available%20today%3F">Book on WhatsApp</a>
-          <a class="btn btn-line-dark" href="https://www.google.com/maps/search/?api=1&query=17%2C+Block+5%2C+17th+A+Main+Rd%2C+KHB+Block+Koramangala%2C+5th+Block%2C+Koramangala%2C+Bengaluru%2C+Karnataka+560095" target="_blank" rel="noopener">Get directions</a>
+          <a class="btn btn-line-dark" href="https://www.google.com/maps/search/?api=1&query=100+Feet+Road%2C+Indiranagar%2C+Bengaluru%2C+Karnataka+560038" target="_blank" rel="noopener">Get directions</a>
         </div>
       </div>
-      <div class="loc-map">
-        <iframe
-          src="https://www.google.com/maps?q=17,%20Block%205,%2017th%20A%20Main%20Rd,%20KHB%20Block%20Koramangala,%205th%20Block,%20Koramangala,%20Bengaluru,%20Karnataka%20560095&output=embed"
+      <div class="map-wrap">
+        <iframe 
+          src="https://www.google.com/maps?q=100%20Feet%20Road,%20Indiranagar,%20Bengaluru,%20Karnataka%20560038&output=embed" 
           loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Dhara Spa location map"></iframe>
       </div>
     </div>
@@ -530,7 +597,7 @@
     <div class="foot-grid">
       <div>
         <div class="foot-brand">Dhara</div>
-        <p style="margin-top:14px; font-size:14.5px; max-width:34ch;">An unbroken stream of calm, in the heart of Koramangala. Ayurvedic and international rituals, private suites, and a Royal Jacuzzi experience.</p>
+        <p style="margin-top:14px; font-size:16px; max-width:34ch; line-height: 1.5;">An unbroken stream of calm, in the heart of Indiranagar. Ayurvedic and international rituals, private suites, and a Royal Jacuzzi experience.</p>
       </div>
       <div>
         <h5>Explore</h5>
@@ -544,22 +611,81 @@
       <div>
         <h5>Contact</h5>
         <ul>
-          <li>17, Block 5, 17th A Main Rd, KHB Block, Koramangala 5th Block, Bengaluru 560095</li>
+          <li>100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru 560038</li>
           <li><a href="tel:+919387290899">+91 93872 90899</a></li>
           <li><a href="https://wa.me/919387290899">WhatsApp us</a></li>
         </ul>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 Dhara Spa, Koramangala. All rights reserved.</span>
+      <span>© 2026 Dhara Spa, Indiranagar. All rights reserved.</span>
       <span>Open daily — confirm hours on WhatsApp</span>
     </div>
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/919387290899?text=Hi%20Dhara%20Spa%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+<a class="float-btn call-float" href="tel:+919387290899" aria-label="Call Us">
+  <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+</a>
+
+<a class="float-btn wa-float" href="https://wa.me/919387290899?text=Hi%20Dhara%20Spa%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 32 32" fill="white"><path d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.6.8 5 2.2 7L3 29l6.7-2.4c1.9 1.1 4.1 1.7 6.3 1.7 7 0 12.7-5.6 12.7-12.5S23 3 16 3zm0 22.7c-2 0-3.9-.5-5.5-1.5l-.4-.2-4 1.4 1.3-3.9-.3-.4a10.1 10.1 0 01-1.6-5.6C5.5 9.9 10.2 5.3 16 5.3S26.5 9.9 26.5 15.5 21.8 25.7 16 25.7zm5.8-7.6c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1s-.8 1-1 1.3-.4.3-.7.1a8.7 8.7 0 01-2.6-1.6 9.7 9.7 0 01-1.8-2.2c-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6s-.7-1.7-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.4c.2.3 2.4 3.7 5.8 5.1.8.3 1.5.5 2 .7.8.3 1.6.2 2.2.1.7-.1 2-.8 2.3-1.6.3-.8.3-1.4.2-1.6-.1-.1-.3-.2-.6-.4z"/></svg>
 </a>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // --- Image Slider ---
+    const slider = document.getElementById("hero-slider");
+    let currentIndex = 0;
+    let activeImages = [];
+    const maxImages = 20;
+    const exts = ['.jpg', '.webp', '.png'];
+
+    for (let i = 1; i <= maxImages; i++) {
+      exts.forEach(ext => {
+        const img = new Image();
+        img.src = `images/${i}${ext}`;
+        img.onload = () => {
+          img.dataset.index = i;
+          activeImages.push(img);
+          activeImages.sort((a, b) => a.dataset.index - b.dataset.index);
+          
+          slider.innerHTML = '';
+          activeImages.forEach((imgEl, idx) => {
+            imgEl.className = (idx === currentIndex) ? "active" : "";
+            slider.appendChild(imgEl);
+          });
+
+          if (activeImages.length > 1 && !window.sliderInterval) {
+            window.sliderInterval = setInterval(() => {
+              activeImages.forEach(el => el.classList.remove('active'));
+              currentIndex = (currentIndex + 1) % activeImages.length;
+              activeImages[currentIndex].classList.add('active');
+            }, 4500);
+          }
+        };
+      });
+    }
+
+    // --- Falling Petals ---
+    const hero = document.querySelector('.hero');
+    if(hero) {
+      for(let i=0; i<6; i++) {
+        let p = document.createElement('div');
+        p.className = 'petal';
+        p.style.left = (Math.random() * 100) + '%';
+        p.style.animationDuration = (Math.random() * 6 + 6) + 's';
+        p.style.animationDelay = (Math.random() * 5) + 's';
+        const petalImg = Math.random() > 0.5 ? 'images/pink_petal.webp' : 'images/red_petal.webp';
+        p.style.backgroundImage = `url('${petalImg}')`;
+        let size = Math.random() * 15 + 25;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        hero.appendChild(p);
+      }
+    }
+  });
+</script>
 
 </body>
 </html>
