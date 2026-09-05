@@ -275,6 +275,30 @@
     .feature-art{ min-height:280px; }
   }
 
+  /* ---------- Jacuzzi Carousel ---------- */
+  .jacuzzi-carousel { position: relative; overflow: hidden; width: 100%; border-radius:4px; box-shadow:0 14px 28px rgba(0,0,0,0.08); background:#F4E1E6; }
+  .carousel-track { display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+  .carousel-slide { min-width: 100%; box-sizing: border-box; }
+  .carousel-slide.feature { box-shadow:none; border-radius:0; }
+  
+  .carousel-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(251,248,243,0.9); border: none; border-radius: 50%;
+    width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 10;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .carousel-btn:hover { background: var(--paper); transform: translateY(-50%) scale(1.05); }
+  .prev-btn { left: 16px; }
+  .next-btn { right: 16px; }
+  
+  .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+  .carousel-dots .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(28,32,29,0.2); cursor: pointer; transition: background 0.3s ease;
+  }
+  .carousel-dots .dot.active { background: var(--deep-2); }
+
   /* ---------- About ---------- */
   .about-grid{
     display:grid; grid-template-columns: 0.9fr 1.1fr; gap:60px; align-items:center;
@@ -534,27 +558,115 @@
   </div>
 </section>
 
-<!-- ============ COUPLE + JACUZZI ============ -->
+<!-- ============ JACUZZI EXPERIENCES ============ -->
 <section id="couple" class="section-alt">
-  <div class="wrap">
-    <div class="feature">
-      <div class="feature-copy">
-        <span class="eyebrow" style="color:var(--gold-soft);">For two</span>
-        <h3>Couple massage &amp; the Royal Jacuzzi suite</h3>
-        <p>One private room, two therapists working in quiet rhythm. For an anniversary, a birthday, or simply an evening set aside for each other — followed by time to soak together in our Royal Jacuzzi before you leave.</p>
-        <ul class="feature-list">
-          <li>Private couple's suite, booked exclusively for your session</li>
-          <li>Choice of Swedish, Aromatherapy or Balinese for the massage portion</li>
-          <li>Royal Jacuzzi soak included, with warm towels and herbal tea after</li>
-          <li>Best booked a day ahead to guarantee your preferred slot</li>
-        </ul>
-        <div style="margin-top:30px;">
-          <a class="btn btn-gold" href="https://wa.me/919387290899?text=Hi%20Dhara%20Spa%2C%20I%27d%20like%20to%20book%20the%20Couple%20Massage%20%2B%20Royal%20Jacuzzi%20experience.%20Can%20you%20share%20availability%3F">Enquire on WhatsApp</a>
+  <div class="wrap" style="position:relative;">
+    <div class="jacuzzi-carousel">
+      <div class="carousel-track" id="jacuzzi-track">
+        
+        <!-- Slide 1 -->
+        <div class="carousel-slide feature">
+          <div class="feature-copy">
+            <span class="eyebrow" style="color:var(--gold-soft);">Slide 1 of 4</span>
+            <h3>Jacuzzi Experiences</h3>
+            <p>Elevate your relaxation with our signature soaking rituals. A perfect standalone escape or addition to any therapy.</p>
+            <ul class="feature-list">
+              <li><b>Private Jacuzzi Experience:</b> A quiet soak reserved just for you.</li>
+              <li><b>Couples Jacuzzi Experience:</b> Shared warmth and tranquility.</li>
+              <li><b>Jacuzzi Bubble Bath:</b> Deeply soothing, foaming relaxation.</li>
+              <li><b>Aromatherapy Jacuzzi:</b> Infused with essential oils, mood lighting, and relaxing music.</li>
+              <li><b>Flower Bath Jacuzzi:</b> A royal, fragrant floral soak.</li>
+              <li><b>Jacuzzi with Bath Salts:</b> Detoxifying minerals to ease muscle tension.</li>
+            </ul>
+            <div style="margin-top:30px;">
+              <a class="btn btn-gold" href="https://wa.me/919387290899?text=Hi%20Dhara%20Spa%2C%20I%27d%20like%20to%20know%20more%20about%20your%20Jacuzzi%20Experiences.">Enquire on WhatsApp</a>
+            </div>
+          </div>
+          <div class="feature-art" style="overflow:hidden; border-radius:4px; box-shadow:0 14px 28px rgba(0,0,0,0.08);">
+            <img src="images/5.webp" alt="Jacuzzi Experience" class="pan-image" style="width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/5;">
+          </div>
         </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-slide feature">
+          <div class="feature-copy">
+            <span class="eyebrow" style="color:var(--gold-soft);">Slide 2 of 4</span>
+            <h3>Jacuzzi Spa Combinations</h3>
+            <p>Pair the deep muscle-melting warmth of the Jacuzzi with our therapeutic treatments for a complete reset.</p>
+            <ul class="feature-list">
+              <li><b>Jacuzzi + Scrub or Polish:</b> Renew your skin, then soak.</li>
+              <li><b>Jacuzzi + Full-Body Massage:</b> The ultimate head-to-toe relief.</li>
+              <li><b>Jacuzzi + Aromatherapy Massage:</b> A deeply emotional and physical unwind.</li>
+              <li><b>Jacuzzi + Head & Shoulder or Foot Massage:</b> Targeted relief where you hold the most tension.</li>
+              <li><b>Jacuzzi + Body Wrap or Mini Facial:</b> Hydrate, glow, and relax.</li>
+            </ul>
+            <div style="margin-top:30px;">
+              <a class="btn btn-gold" href="https://wa.me/919387290899?text=Hi%20Dhara%20Spa%2C%20I%27d%20like%20to%20know%20more%20about%20your%20Jacuzzi%20Combinations.">Enquire on WhatsApp</a>
+            </div>
+          </div>
+          <div class="feature-art" style="overflow:hidden; border-radius:4px; box-shadow:0 14px 28px rgba(0,0,0,0.08);">
+            <img src="images/4.webp" alt="Jacuzzi Combinations" class="pan-image" style="width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/5;">
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-slide feature">
+          <div class="feature-copy">
+            <span class="eyebrow" style="color:var(--gold-soft);">Slide 3 of 4</span>
+            <h3>Jacuzzi & Heat Therapy</h3>
+            <p>Amplify the detoxifying benefits of water with intense, clarifying heat therapies.</p>
+            <ul class="feature-list">
+              <li><b>Jacuzzi + Steam Bath:</b> Clear your lungs and pores.</li>
+              <li><b>Jacuzzi + Sauna:</b> Dry heat meets soothing water.</li>
+              <li><b>Steam + Scrub + Jacuzzi:</b> The holy trinity of skin renewal and deep detox.</li>
+              <li><b>Sauna + Jacuzzi:</b> A vigorous sweat followed by a relaxing soak.</li>
+            </ul>
+            <div style="margin-top:30px;">
+              <a class="btn btn-gold" href="https://wa.me/919387290899?text=Hi%20Dhara%20Spa%2C%20I%27d%20like%20to%20know%20more%20about%20Jacuzzi%20and%20Heat%20Therapy.">Enquire on WhatsApp</a>
+            </div>
+          </div>
+          <div class="feature-art" style="overflow:hidden; border-radius:4px; box-shadow:0 14px 28px rgba(0,0,0,0.08);">
+            <img src="images/8.webp" alt="Heat Therapy" class="pan-image" style="width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/5;">
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="carousel-slide feature">
+          <div class="feature-copy">
+            <span class="eyebrow" style="color:var(--gold-soft);">Slide 4 of 4</span>
+            <h3>Couples Jacuzzi Packages</h3>
+            <p>Designed to be shared. Uninterrupted time together in our private suites.</p>
+            <ul class="feature-list">
+              <li><b>Couples Jacuzzi + Massage:</b> Our most popular shared experience.</li>
+              <li><b>Couples Jacuzzi + Scrub + Massage:</b> A full half-day retreat.</li>
+              <li><b>Romantic Jacuzzi & Flower Bath:</b> Perfect for anniversaries.</li>
+              <li><b>Couples Spa Ritual:</b> The ultimate journey for two.</li>
+            </ul>
+            <div style="margin-top:30px;">
+              <a class="btn btn-gold" href="https://wa.me/919387290899?text=Hi%20Dhara%20Spa%2C%20I%27d%20like%20to%20book%20a%20Couples%20Jacuzzi%20Package.">Enquire on WhatsApp</a>
+            </div>
+          </div>
+          <div class="feature-art" style="overflow:hidden; border-radius:4px; box-shadow:0 14px 28px rgba(0,0,0,0.08);">
+            <img src="images/9.webp" alt="Couples Packages" class="pan-image" style="width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/5;">
+          </div>
+        </div>
+
       </div>
-      <div class="feature-art" style="overflow:hidden; border-radius:4px; box-shadow:0 14px 28px rgba(0,0,0,0.08);">
-        <img src="images/5.webp" alt="Couple Massage and Royal Jacuzzi Suite" class="pan-image" style="width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/5;">
-      </div>
+      
+      <!-- Controls -->
+      <button class="carousel-btn prev-btn" id="jacuzzi-prev" aria-label="Previous Slide">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="var(--deep-2)"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <button class="carousel-btn next-btn" id="jacuzzi-next" aria-label="Next Slide">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="var(--deep-2)"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+      </button>
+    </div>
+    
+    <div class="carousel-dots" id="jacuzzi-dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
     </div>
   </div>
 </section>
@@ -894,6 +1006,46 @@
         header.classList.remove('scrolled');
       }
     });
+
+    // --- Jacuzzi Carousel ---
+    const jTrack = document.getElementById('jacuzzi-track');
+    const jNextBtn = document.getElementById('jacuzzi-next');
+    const jPrevBtn = document.getElementById('jacuzzi-prev');
+    const jDotsNav = document.getElementById('jacuzzi-dots');
+    
+    if(jTrack && jNextBtn && jPrevBtn && jDotsNav) {
+      const jSlides = Array.from(jTrack.children);
+      const jDots = Array.from(jDotsNav.children);
+      let currentJSlide = 0;
+
+      const updateJSlide = () => {
+        jTrack.style.transform = `translateX(-${currentJSlide * 100}%)`;
+        jDots.forEach(d => d.classList.remove('active'));
+        jDots[currentJSlide].classList.add('active');
+      };
+
+      jNextBtn.addEventListener('click', () => {
+        currentJSlide = (currentJSlide + 1) % jSlides.length;
+        updateJSlide();
+      });
+
+      jPrevBtn.addEventListener('click', () => {
+        currentJSlide = (currentJSlide - 1 + jSlides.length) % jSlides.length;
+        updateJSlide();
+      });
+
+      jDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          currentJSlide = index;
+          updateJSlide();
+        });
+      });
+      
+      let jInterval = setInterval(() => jNextBtn.click(), 6000);
+      const jCarousel = document.querySelector('.jacuzzi-carousel');
+      jCarousel.addEventListener('mouseenter', () => clearInterval(jInterval));
+      jCarousel.addEventListener('mouseleave', () => { jInterval = setInterval(() => jNextBtn.click(), 6000); });
+    }
 
     // --- Background Music ---
     const musicBtn = document.getElementById('music-btn');
