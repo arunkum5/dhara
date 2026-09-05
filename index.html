@@ -429,29 +429,18 @@
     100% { transform: scale(1.1) translate(-1.5%, -1.5%); }
   }
 
-  @keyframes goldWave {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
   .brand-tag { 
-    font-size: 11px; 
+    font-size: 13px; 
     font-family: 'Karla', sans-serif; 
     font-weight: 700; 
     letter-spacing: 0.5px; 
     margin-top: 3px; 
-    background: linear-gradient(270deg, #D4AF37, #FFF5C3, #B58500, #D4AF37);
-    background-size: 300% 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: goldWave 4s ease infinite;
   }
   
   @media (max-width: 760px) {
-    #header-logo { width: 44px !important; height: 44px !important; }
+    #header-logo { width: 42px !important; height: 42px !important; }
     .brand-title { font-size: 20px !important; }
-    .brand-tag { font-size: 9px !important; }
+    .brand-tag { font-size: 10.5px !important; }
     .nav-cta .btn-gold { padding: 8px 14px !important; font-size: 13px !important; }
     .hero h1 { font-size: 42px !important; }
     .hero p.lead { font-size: 15px !important; }
@@ -464,10 +453,14 @@
 <header>
   <div class="nav">
     <a href="#" class="brand">
-      <img id="header-logo" src="images/logo.webp" alt="Dhara Spa Logo" style="width:68px; height:68px; object-fit:contain; mix-blend-mode: multiply;">
+      <img id="header-logo" src="images/logo.webp" alt="Dhara Spa Logo" style="width:64px; height:64px; object-fit:contain; mix-blend-mode: multiply;">
       <div style="display:flex; flex-direction:column; justify-content:center; align-items:flex-start;">
         <span class="brand-title" style="font-size:26px; line-height:1; background: linear-gradient(90deg, #D3879F, #9E5669); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Dhara Spa</span>
-        <span class="brand-tag">RELAX, REJUVENATE, REVIVE</span>
+        <span class="brand-tag">
+          <span style="color:#D4AF37;">RELAX,</span> 
+          <span style="color:#D3879F;">REJUVENATE,</span> 
+          <span style="color:#9E5669;">REVIVE</span>
+        </span>
       </div>
     </a>
     <nav class="nav-links">
