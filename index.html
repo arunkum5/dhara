@@ -429,13 +429,13 @@
     100% { transform: scale(1.1) translate(-1.5%, -1.5%); }
   }
 
-  @keyframes wordZoom {
-    0%, 100% { transform: scale(1); opacity: 0.85; }
-    50% { transform: scale(1.15); opacity: 1; text-shadow: 0 0 10px rgba(255,255,255,0.4); }
+  @keyframes wordWave {
+    0%, 100% { transform: translateY(0); opacity: 0.85; }
+    50% { transform: translateY(-3px); opacity: 1; text-shadow: 0 2px 4px rgba(0,0,0,0.15); }
   }
 
   .brand-tag { 
-    font-size: 13px; 
+    font-size: 12.3px; 
     font-family: 'Fraunces', serif; 
     font-weight: 500; 
     letter-spacing: 0.5px; 
@@ -443,14 +443,14 @@
   }
   .brand-tag span {
     display: inline-block;
-    animation: wordZoom 3s ease-in-out infinite;
-    transform-origin: center;
+    animation: wordWave 3s ease-in-out infinite;
+    margin-right: 4px;
   }
   
   @media (max-width: 760px) {
     #header-logo { width: 42px !important; height: 42px !important; }
     .brand-title { font-size: 20px !important; }
-    .brand-tag { font-size: 10.5px !important; }
+    .brand-tag { font-size: 10px !important; }
     .nav-cta .btn-gold { padding: 8px 14px !important; font-size: 13px !important; }
     .hero h1 { font-size: 42px !important; }
     .hero p.lead { font-size: 15px !important; }
@@ -467,9 +467,9 @@
       <div style="display:flex; flex-direction:column; justify-content:center; align-items:flex-start;">
         <span class="brand-title" style="font-size:26px; line-height:1; background: linear-gradient(90deg, #D3879F, #9E5669); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Dhara Spa</span>
         <span class="brand-tag">
-          <span style="color:#D4AF37; animation-delay: 0s;">RELAX,</span> 
-          <span style="color:#D3879F; animation-delay: 1s;">REJUVENATE,</span> 
-          <span style="color:#9E5669; animation-delay: 2s;">REVIVE</span>
+          <span style="color:#C69749; animation-delay: 0s;">RELAX,</span> 
+          <span style="color:#9E626D; animation-delay: 1s;">REJUVENATE,</span> 
+          <span style="color:#6E3E47; animation-delay: 2s;">REVIVE</span>
         </span>
       </div>
     </a>
