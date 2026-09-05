@@ -74,12 +74,20 @@
     background:rgba(251,248,243,0.92);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
+    transition: background 0.3s ease;
   }
   .nav{
     display:flex; align-items:center; justify-content:space-between;
-    padding:18px 28px;
+    padding:16px 28px;
     max-width:var(--max); margin:0 auto;
+    transition: padding 0.3s ease;
   }
+  #header-logo { transition: width 0.3s ease, height 0.3s ease; }
+  
+  header.scrolled { background:rgba(251,248,243,0.98); box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+  header.scrolled .nav { padding:6px 28px; }
+  header.scrolled #header-logo { width:44px !important; height:44px !important; }
+
   .brand{
     display:flex; align-items:center; gap:10px;
     font-family:'Fraunces', serif; font-style:italic;
@@ -376,7 +384,7 @@
 <header>
   <div class="nav">
     <a href="#" class="brand">
-      <img src="images/logo.webp" alt="Dhara Spa Logo" style="width:116px; height:116px; object-fit:contain; mix-blend-mode: multiply;">
+      <img id="header-logo" src="images/logo.webp" alt="Dhara Spa Logo" style="width:68px; height:68px; object-fit:contain; mix-blend-mode: multiply;">
       <div style="display:flex; flex-direction:column; justify-content:center; align-items:flex-start;">
         <span style="line-height:1; background: linear-gradient(90deg, #D3879F, #9E5669); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Dhara Spa</span>
         <span style="font-size:11px; font-family:'Karla',sans-serif; font-style:normal; font-weight:700; color:var(--clay); letter-spacing:0.5px; margin-top:3px;">AYURVEDIC RITUALS</span>
@@ -801,6 +809,16 @@
         hero.appendChild(p);
       }
     }
+
+    // --- Header Shrink on Scroll ---
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
   });
 </script>
 
