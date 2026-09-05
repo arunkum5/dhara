@@ -429,7 +429,24 @@
     100% { transform: scale(1.1) translate(-1.5%, -1.5%); }
   }
 
-  .brand-tag { font-size: 11px; font-family: 'Karla', sans-serif; font-weight: 700; color: #D4AF37; letter-spacing: 0.5px; margin-top: 3px; }
+  @keyframes goldWave {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .brand-tag { 
+    font-size: 11px; 
+    font-family: 'Karla', sans-serif; 
+    font-weight: 700; 
+    letter-spacing: 0.5px; 
+    margin-top: 3px; 
+    background: linear-gradient(270deg, #D4AF37, #FFF5C3, #B58500, #D4AF37);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: goldWave 4s ease infinite;
+  }
   
   @media (max-width: 760px) {
     #header-logo { width: 44px !important; height: 44px !important; }
