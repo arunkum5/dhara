@@ -71,10 +71,10 @@
   /* ---------- Header ---------- */
   header{
     position:sticky; top:0; z-index:50;
-    background:rgba(251,248,243,0.92);
+    background: linear-gradient(135deg, rgba(251,248,243,0.92) 0%, rgba(237,227,211,0.92) 100%);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
   }
   .nav{
     display:flex; align-items:center; justify-content:space-between;
@@ -84,7 +84,10 @@
   }
   #header-logo { transition: width 0.3s ease, height 0.3s ease; }
   
-  header.scrolled { background:rgba(251,248,243,0.98); box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+  header.scrolled { 
+    background: linear-gradient(135deg, rgba(251,248,243,0.98) 0%, rgba(237,227,211,0.98) 100%); 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06); 
+  }
   header.scrolled .nav { padding:6px 28px; }
   header.scrolled #header-logo { width:44px !important; height:44px !important; }
 
@@ -175,6 +178,7 @@
     font-size:18px;
     max-width:46ch;
     color:rgba(251,248,243,0.9);
+    transition: opacity 0.6s ease;
   }
   .hero-cta{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
   .hero-meta{
@@ -220,24 +224,37 @@
   .section-alt{ background:var(--sand); }
 
   /* ---------- Rituals (massage menu) ---------- */
-  .rituals-list{
-    display:flex; flex-direction:column;
-  }
+  .rituals-list{ display:grid; grid-template-columns:repeat(2, 1fr); gap:24px; }
   .ritual-row{
-    display:grid; grid-template-columns: 1.1fr 2.4fr auto;
-    gap:28px; align-items:center;
-    padding:26px 0;
-    border-top:1px solid var(--line);
+    display:flex; flex-direction:column; align-items:flex-start;
+    background:var(--paper); border:1px solid transparent; border-radius:4px;
+    padding:30px; box-shadow:0 4px 12px rgba(0,0,0,0.02);
+    position:relative; overflow:hidden; transition: border-color 0.4s ease;
   }
-  .ritual-row:last-child{ border-bottom:1px solid var(--line); }
-  .ritual-name{ font-family:'Fraunces', serif; font-size:22px; color:var(--deep-2); }
-  .ritual-tag{ display:block; font-family:'Karla',sans-serif; font-size:13px; font-weight:600; color:var(--clay); margin-top:4px; }
-  .ritual-desc{ color:rgba(28,32,29,0.72); font-size:15.5px; }
-  .ritual-dur{ font-size:14px; font-weight:600; color:var(--deep); white-space:nowrap; text-align:right; }
-  @media (max-width: 760px){
-    .ritual-row{ grid-template-columns:1fr; gap:8px; }
-    .ritual-dur{ text-align:left; }
-  }
+  .ritual-row:hover { border-color:var(--line); }
+  
+  .ritual-bg { position:absolute; inset:0; z-index:0; opacity:1; transition:opacity 0.5s ease, transform 6s ease; background-size:cover; background-position:center; transform:scale(1.05); }
+  .ritual-overlay { position:absolute; inset:0; z-index:1; background:rgba(28,32,29,0.82); opacity:1; transition:opacity 0.5s ease; }
+  .ritual-row:hover .ritual-bg { opacity:0; transform:scale(1); }
+  .ritual-row:hover .ritual-overlay { opacity:0; }
+  
+  .ritual-content { position:relative; z-index:2; display:flex; flex-direction:column; height:100%; width:100%; }
+  
+  .ritual-name{ font-family:'Fraunces', serif; font-size:24px; color:var(--paper); margin-bottom:4px; transition:color 0.4s ease; }
+  .ritual-tag{ display:block; font-family:'Karla',sans-serif; font-size:12px; font-weight:700; text-transform:uppercase; color:var(--gold-soft); letter-spacing:0.5px; margin-bottom:16px; transition:color 0.4s ease; }
+  .ritual-desc{ color:var(--paper); font-size:15px; line-height:1.6; margin-bottom:24px; flex-grow:1; transition:color 0.4s ease; }
+  .ritual-dur{ font-size:13px; font-weight:700; color:var(--paper); text-align:left; border-top:1px solid rgba(251,248,243,0.2); padding-top:16px; width:100%; text-transform:uppercase; letter-spacing:0.5px; transition:color 0.4s ease, border-color 0.4s ease; }
+  
+  .ritual-row:hover .ritual-name { color:var(--deep-2); }
+  .ritual-row:hover .ritual-desc { color:rgba(28,32,29,0.72); }
+  .ritual-row:hover .ritual-dur { color:var(--deep); border-top-color:var(--line); }
+  .ritual-row:hover .ritual-tag { color:var(--clay); }
+  
+  @keyframes fadeUpAnim { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+  .ritual-row.visible { animation: fadeUpAnim 0.8s ease backwards; }
+  .ritual-row:nth-child(even).visible { animation-delay: 0.15s; }
+  
+  @media (max-width: 900px){ .rituals-list{ grid-template-columns:1fr; } }
 
   /* ---------- Couple / Jacuzzi feature ---------- */
   .feature{
@@ -339,7 +356,7 @@
   @media (max-width: 820px){ .loc-grid{ grid-template-columns:1fr; } }
 
   /* ---------- Footer ---------- */
-  footer{ background:var(--deep-2); color:rgba(251,248,243,0.75); padding:24px 0 14px; }
+  footer{ background: linear-gradient(135deg, var(--deep-2) 0%, var(--ink) 100%); color:rgba(251,248,243,0.75); padding:24px 0 14px; }
   .foot-grid{ display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap:28px; }
   .foot-brand{ font-family:'Fraunces',serif; font-style:italic; font-size:24px; color:var(--paper); }
   .foot-grid h5{ font-family:'Karla',sans-serif; font-size:15px; font-weight:700; color:var(--gold-soft); margin:0 0 10px; }
@@ -410,7 +427,7 @@
   <div class="hero-grid" style="padding-top:74px;">
     <div>
       <h1 id="hero-quote" style="margin-top:0;">Relax. Renew. Restore.</h1>
-      <p class="lead">Named after the Sanskrit word for a continuous stream, Dhara is built around a single feeling: nothing rushed, nothing broken. Just one long exhale from the moment you arrive.</p>
+      <p class="lead" id="hero-desc">Named after the Sanskrit word for a continuous stream, Dhara is built around a single feeling: nothing rushed, nothing broken. Just one long exhale from the moment you arrive.</p>
       <div class="hero-cta">
         <a class="btn btn-gold" href="https://wa.me/919387290899?text=Hi%20Dhara%20Spa%2C%20I%27d%20like%20to%20book%20an%20appointment.%20What%20slots%20are%20available%3F">Book on WhatsApp</a>
         <a class="btn btn-line" href="tel:+919387290899">Call +91 93872 90899</a>
@@ -437,44 +454,68 @@
     </div>
     <div class="rituals-list">
       <div class="ritual-row">
-        <div><span class="ritual-name">Shirodhara</span><span class="ritual-tag">Dhara signature</span></div>
-        <div class="ritual-desc">A slow, continuous stream of warm herbal oil across the forehead — the ritual Dhara is named for. Deeply quieting for the mind.</div>
-        <div class="ritual-dur">45 / 60 min</div>
+        <div class="ritual-bg" style="background-image:url('images/ritual_1.webp');"></div><div class="ritual-overlay"></div>
+        <div class="ritual-content">
+          <div><span class="ritual-name">Shirodhara</span><span class="ritual-tag">Dhara signature</span></div>
+          <div class="ritual-desc">A slow, continuous stream of warm herbal oil across the forehead — the ritual Dhara is named for. Deeply quieting for the mind.</div>
+          <div class="ritual-dur">45 / 60 min</div>
+        </div>
       </div>
       <div class="ritual-row">
-        <div><span class="ritual-name">Swedish massage</span><span class="ritual-tag">First visit, everyday stress</span></div>
-        <div class="ritual-desc">Long, gliding strokes to ease tension and settle a busy mind. A gentle way to begin, if you're new to spa therapy.</div>
-        <div class="ritual-dur">60 / 90 min</div>
+        <div class="ritual-bg" style="background-image:url('images/ritual_2.webp');"></div><div class="ritual-overlay"></div>
+        <div class="ritual-content">
+          <div><span class="ritual-name">Swedish massage</span><span class="ritual-tag">First visit, everyday stress</span></div>
+          <div class="ritual-desc">A rhythmic, flowing journey designed to sweep away the weight of the world. Gentle, continuous strokes melt into your muscles, offering a tranquil escape from the outside noise.</div>
+          <div class="ritual-dur">60 / 90 min</div>
+        </div>
       </div>
       <div class="ritual-row">
-        <div><span class="ritual-name">Deep tissue massage</span><span class="ritual-tag">Knots, stiffness, desk fatigue</span></div>
-        <div class="ritual-desc">Firmer, focused pressure through the shoulders, back and legs — built for the stiffness that builds up over a long week.</div>
-        <div class="ritual-dur">60 / 90 min</div>
+        <div class="ritual-bg" style="background-image:url('images/ritual_3.webp');"></div><div class="ritual-overlay"></div>
+        <div class="ritual-content">
+          <div><span class="ritual-name">Deep tissue massage</span><span class="ritual-tag">Knots, stiffness, desk fatigue</span></div>
+          <div class="ritual-desc">For the body that carries too much. Deliberate, deeply grounding pressure unravels long-held tension in the back and shoulders, returning you to a state of profound lightness.</div>
+          <div class="ritual-dur">60 / 90 min</div>
+        </div>
       </div>
       <div class="ritual-row">
-        <div><span class="ritual-name">Traditional Thai massage</span><span class="ritual-tag">Flexibility, active bodies</span></div>
-        <div class="ritual-desc">Assisted stretching and rhythmic pressure along the body's energy lines, done fully clothed on a floor mat.</div>
-        <div class="ritual-dur">60 / 90 min</div>
+        <div class="ritual-bg" style="background-image:url('images/ritual_4.webp');"></div><div class="ritual-overlay"></div>
+        <div class="ritual-content">
+          <div><span class="ritual-name">Traditional Thai massage</span><span class="ritual-tag">Flexibility, active bodies</span></div>
+          <div class="ritual-desc">An ancient dance of assisted stretching and deep compression. Feel your body open up and breathe again, restoring flexibility and a vibrant flow of energy.</div>
+          <div class="ritual-dur">60 / 90 min</div>
+        </div>
       </div>
       <div class="ritual-row">
-        <div><span class="ritual-name">Balinese massage</span><span class="ritual-tag">Full-body reset</span></div>
-        <div class="ritual-desc">A blend of long strokes, acupressure and gentle stretching, drawn from traditional Indonesian technique.</div>
-        <div class="ritual-dur">60 / 90 min</div>
+        <div class="ritual-bg" style="background-image:url('images/ritual_5.webp');"></div><div class="ritual-overlay"></div>
+        <div class="ritual-content">
+          <div><span class="ritual-name">Balinese massage</span><span class="ritual-tag">Full-body reset</span></div>
+          <div class="ritual-desc">A beautiful fusion of deep pressure and soothing acupressure. Let this traditional Indonesian healing art reawaken your senses and bring total harmony to mind and body.</div>
+          <div class="ritual-dur">60 / 90 min</div>
+        </div>
       </div>
       <div class="ritual-row">
-        <div><span class="ritual-name">Hot stone therapy</span><span class="ritual-tag">Deep muscular tension</span></div>
-        <div class="ritual-desc">Warmed basalt stones glide over tight muscle, letting heat do the work that pressure alone can't.</div>
-        <div class="ritual-dur">90 min</div>
+        <div class="ritual-bg" style="background-image:url('images/ritual_6.webp');"></div><div class="ritual-overlay"></div>
+        <div class="ritual-content">
+          <div><span class="ritual-name">Hot stone therapy</span><span class="ritual-tag">Deep muscular tension</span></div>
+          <div class="ritual-desc">The pure, grounding warmth of heated basalt stones melting into your skin. A deeply comforting ritual that reaches the profound depths of muscular exhaustion.</div>
+          <div class="ritual-dur">90 min</div>
+        </div>
       </div>
       <div class="ritual-row">
-        <div><span class="ritual-name">Aromatherapy massage</span><span class="ritual-tag">Emotional wellbeing</span></div>
-        <div class="ritual-desc">A gentle, oil-led massage with a blend chosen to match your mood — calming, uplifting, or grounding.</div>
-        <div class="ritual-dur">60 / 90 min</div>
+        <div class="ritual-bg" style="background-image:url('images/ritual_7.webp');"></div><div class="ritual-overlay"></div>
+        <div class="ritual-content">
+          <div><span class="ritual-name">Aromatherapy massage</span><span class="ritual-tag">Emotional wellbeing</span></div>
+          <div class="ritual-desc">A deeply personal sensory experience. Breathe in hand-blended essential oils as gentle, sweeping massage strokes align your emotional wellbeing with physical calm.</div>
+          <div class="ritual-dur">60 / 90 min</div>
+        </div>
       </div>
       <div class="ritual-row">
-        <div><span class="ritual-name">Foot reflexology</span><span class="ritual-tag">On your feet all day</span></div>
-        <div class="ritual-desc">Focused pressure-point work across the feet — a quick, grounding reset between meetings or after a long walk.</div>
-        <div class="ritual-dur">30 / 45 min</div>
+        <div class="ritual-bg" style="background-image:url('images/ritual_8.webp');"></div><div class="ritual-overlay"></div>
+        <div class="ritual-content">
+          <div><span class="ritual-name">Foot reflexology</span><span class="ritual-tag">On your feet all day</span></div>
+          <div class="ritual-desc">A restorative pause for the weary. Precise, deeply intuitive pressure along the soles of your feet releases blockages, grounding your entire body back to the earth.</div>
+          <div class="ritual-dur">30 / 45 min</div>
+        </div>
       </div>
     </div>
   </div>
@@ -715,7 +756,18 @@
               "Bliss Starts Here",
               "Peace. Pamper. Repeat."
             ];
+            const descs = [
+              "Named after the Sanskrit word for a continuous stream, Dhara is built around a single feeling: nothing rushed, nothing broken. Just one long exhale from the moment you arrive.",
+              "Step away from the noise of the city. Our private suites offer a sanctuary where time slows down and your body finds its natural rhythm again.",
+              "Discover a deeply personal approach to wellness. We blend ancient Ayurvedic wisdom with modern therapies to completely reset your mind and body.",
+              "More than just a treatment, it is a journey back to yourself. Sink into warmth, quiet, and profound physical relief.",
+              "Let our expert therapists melt away weeks of stress. Every detail, from the ambient light to the soothing aromas, is curated for your peace.",
+              "Disconnect to reconnect. In the heart of Koramangala, we have created an oasis of calm designed exclusively for your restoration.",
+              "Embrace the luxury of slowing down. A holistic spa experience where every element is dedicated to your complete relaxation.",
+              "A seamless blend of tradition and luxury. Leave your worries at the door and immerse yourself in pure, uninterrupted tranquility."
+            ];
             const quoteEl = document.getElementById('hero-quote');
+            const descEl = document.getElementById('hero-desc');
             window.sliderInterval = setInterval(() => {
               activeImages.forEach(el => el.classList.remove('active'));
               currentIndex = (currentIndex + 1) % activeImages.length;
@@ -723,9 +775,12 @@
               
               if (quoteEl) {
                 quoteEl.style.opacity = 0;
+                if (descEl) descEl.style.opacity = 0;
                 setTimeout(() => {
                   quoteEl.textContent = quotes[currentIndex % quotes.length];
+                  if (descEl) descEl.textContent = descs[currentIndex % descs.length];
                   quoteEl.style.opacity = 1;
+                  if (descEl) descEl.style.opacity = 1;
                 }, 600);
               }
             }, 4500);
@@ -741,7 +796,7 @@
     }
 
     // --- Scroll Animations ---
-    document.querySelectorAll('.section-head, .pkg-card, .feature-copy, .feature-art, .about-art, .about-copy, .loc-copy, .loc-map, .review-strip').forEach((el) => {
+    document.querySelectorAll('.section-head, .pkg-card, .feature-copy, .feature-art, .about-art, .about-copy, .loc-copy, .loc-map, .review-strip, .ritual-row').forEach((el) => {
       el.classList.add('reveal');
     });
     const revealObserver = new IntersectionObserver((entries) => {
