@@ -589,9 +589,9 @@
             </div>
           </div>
           <div class="feature-art inner-slider" style="overflow:hidden; border-radius:4px; box-shadow:0 14px 28px rgba(0,0,0,0.08);">
-            <img src="images/5.webp" alt="Jacuzzi Experience 1" class="pan-image inner-slide active" style="position:relative; width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/5;">
-            <img src="images/2.webp" alt="Jacuzzi Experience 2" class="pan-image inner-slide">
-            <img src="images/8.webp" alt="Jacuzzi Experience 3" class="pan-image inner-slide">
+            <img src="images/slide1_bubble.webp" alt="Jacuzzi Bubble Bath" class="pan-image inner-slide active" style="position:relative; width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/5;">
+            <img src="images/slide1_flower.webp" alt="Flower Bath Jacuzzi" class="pan-image inner-slide">
+            <img src="images/slide1_therapist.webp" alt="Bath Salts Jacuzzi" class="pan-image inner-slide">
           </div>
         </div>
 
@@ -611,8 +611,10 @@
               <a class="btn btn-gold" href="https://wa.me/919387290899?text=Hi%20Dhara%20Spa%2C%20I%27d%20like%20to%20know%20more%20about%20your%20Jacuzzi%20Combinations.">Enquire on WhatsApp</a>
             </div>
           </div>
-          <div class="feature-art" style="overflow:hidden; border-radius:4px; box-shadow:0 14px 28px rgba(0,0,0,0.08);">
-            <img src="images/4.webp" alt="Jacuzzi Combinations" class="pan-image" style="width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/5;">
+          <div class="feature-art inner-slider" style="overflow:hidden; border-radius:4px; box-shadow:0 14px 28px rgba(0,0,0,0.08);">
+            <img src="images/2.webp" alt="Jacuzzi Combinations 1" class="pan-image inner-slide active" style="position:relative; width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/5;">
+            <img src="images/3.webp" alt="Jacuzzi Combinations 2" class="pan-image inner-slide">
+            <img src="images/7.webp" alt="Jacuzzi Combinations 3" class="pan-image inner-slide">
           </div>
         </div>
 
@@ -631,8 +633,10 @@
               <a class="btn btn-gold" href="https://wa.me/919387290899?text=Hi%20Dhara%20Spa%2C%20I%27d%20like%20to%20know%20more%20about%20Jacuzzi%20and%20Heat%20Therapy.">Enquire on WhatsApp</a>
             </div>
           </div>
-          <div class="feature-art" style="overflow:hidden; border-radius:4px; box-shadow:0 14px 28px rgba(0,0,0,0.08);">
-            <img src="images/8.webp" alt="Heat Therapy" class="pan-image" style="width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/5;">
+          <div class="feature-art inner-slider" style="overflow:hidden; border-radius:4px; box-shadow:0 14px 28px rgba(0,0,0,0.08);">
+            <img src="images/8.webp" alt="Heat Therapy 1" class="pan-image inner-slide active" style="position:relative; width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/5;">
+            <img src="images/slide3_steam.webp" alt="Heat Therapy 2" class="pan-image inner-slide">
+            <img src="images/slide3_sauna.webp" alt="Heat Therapy 3" class="pan-image inner-slide">
           </div>
         </div>
 
@@ -651,8 +655,9 @@
               <a class="btn btn-gold" href="https://wa.me/919387290899?text=Hi%20Dhara%20Spa%2C%20I%27d%20like%20to%20book%20a%20Couples%20Jacuzzi%20Package.">Enquire on WhatsApp</a>
             </div>
           </div>
-          <div class="feature-art" style="overflow:hidden; border-radius:4px; box-shadow:0 14px 28px rgba(0,0,0,0.08);">
-            <img src="images/9.webp" alt="Couples Packages" class="pan-image" style="width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/5;">
+          <div class="feature-art inner-slider" style="overflow:hidden; border-radius:4px; box-shadow:0 14px 28px rgba(0,0,0,0.08);">
+            <img src="images/slide4_couples.webp" alt="Couples Packages 1" class="pan-image inner-slide active" style="position:relative; width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/5;">
+            <img src="images/5.webp" alt="Couples Packages 2" class="pan-image inner-slide">
           </div>
         </div>
 
@@ -1022,11 +1027,54 @@
       const jSlides = Array.from(jTrack.children);
       const jDots = Array.from(jDotsNav.children);
       let currentJSlide = 0;
+      let currentInner = 0;
+      let autoTimer;
+      let isHovered = false;
+
+      const advanceCarousel = () => {
+        if(isHovered) return queueNext(1000); // Check again in 1s if hovered
+        
+        const currentInnerSlides = jSlides[currentJSlide].querySelectorAll('.inner-slide');
+        
+        if (currentInnerSlides.length > 0) {
+          currentInnerSlides[currentInner].classList.remove('active');
+          currentInner++;
+          if (currentInner >= currentInnerSlides.length) {
+            currentInner = 0;
+            currentInnerSlides[currentInner].classList.add('active');
+            currentJSlide = (currentJSlide + 1) % jSlides.length;
+            updateJSlide(); 
+          } else {
+            currentInnerSlides[currentInner].classList.add('active');
+            queueNext(4000);
+          }
+        } else {
+          currentJSlide = (currentJSlide + 1) % jSlides.length;
+          updateJSlide();
+        }
+      };
+
+      const queueNext = (ms) => {
+        clearTimeout(autoTimer);
+        const currentInnerSlides = jSlides[currentJSlide].querySelectorAll('.inner-slide');
+        let waitTime = ms || (currentInnerSlides.length > 0 ? 4000 : 6000);
+        autoTimer = setTimeout(advanceCarousel, waitTime);
+      };
 
       const updateJSlide = () => {
         jTrack.style.transform = `translateX(-${currentJSlide * 100}%)`;
         jDots.forEach(d => d.classList.remove('active'));
         jDots[currentJSlide].classList.add('active');
+        
+        jSlides.forEach(slide => {
+           const sInner = slide.querySelectorAll('.inner-slide');
+           if (sInner.length > 0) {
+             sInner.forEach(s => s.classList.remove('active'));
+             sInner[0].classList.add('active');
+           }
+        });
+        currentInner = 0;
+        queueNext();
       };
 
       jNextBtn.addEventListener('click', () => {
@@ -1046,21 +1094,11 @@
         });
       });
       
-      let jInterval = setInterval(() => jNextBtn.click(), 6000);
       const jCarousel = document.querySelector('.jacuzzi-carousel');
-      jCarousel.addEventListener('mouseenter', () => clearInterval(jInterval));
-      jCarousel.addEventListener('mouseleave', () => { jInterval = setInterval(() => jNextBtn.click(), 6000); });
-
-      // --- Nested Inner Slider for Slide 1 ---
-      const innerSlides = document.querySelectorAll('.inner-slide');
-      if(innerSlides.length > 0) {
-        let currentInner = 0;
-        setInterval(() => {
-          innerSlides[currentInner].classList.remove('active');
-          currentInner = (currentInner + 1) % innerSlides.length;
-          innerSlides[currentInner].classList.add('active');
-        }, 4000);
-      }
+      jCarousel.addEventListener('mouseenter', () => isHovered = true);
+      jCarousel.addEventListener('mouseleave', () => isHovered = false);
+      
+      queueNext();
     }
 
     // --- Background Music ---
